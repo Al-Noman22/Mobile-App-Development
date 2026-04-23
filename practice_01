@@ -1,0 +1,90 @@
+child: Text(group),
+                    );
+                  }).toList(),
+                  onChanged: (value) {
+                    setState(() {
+                      selectedBloodGroup = value;
+                    });
+                  },
+                  validator: (value) {
+                    if (value == null) {
+                      return 'Please select blood group';
+                    }
+                    return null;
+                  },
+                ),
+                Row(
+                  children: [
+                    Expanded(
+                      child: ListTile(
+                        title: Text("Male"),
+                        leading: Radio<String>(
+                          value: "Male",
+                          groupValue: selectedGender,
+                          onChanged: (value) {
+                            setState(() {
+                              selectedGender = value;
+                            });
+                          },
+                        ),
+                      ),
+                    ),
+                    Expanded(
+                      child: ListTile(
+                        title: Text("Female"),
+                        leading: Radio<String>(
+                          value: "Female",
+                          groupValue: selectedGender,
+                          onChanged: (value) {
+                            setState(() {
+                              selectedGender = value;
+                            });
+                          },
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                TextFormField(
+                  controller: phoneController,
+                  decoration: InputDecoration(labelText: "Phone Number"),
+                  keyboardType: TextInputType.phone,
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return 'Please enter phone number';
+                    }
+                    return null;
+                  },
+                ),
+                TextFormField(
+                  controller: aboutMeController,
+                  decoration: InputDecoration(labelText: "About Me"),
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return 'Please enter something about yourself';
+                    }
+                    return null;
+                  },
+                ),
+                SizedBox(height: 20),
+                Center(
+                  child: ElevatedButton(
+                    onPressed: _submitForm,
+                    child: Text("Submit"),
+                  ),
+                ),
+                if (submittedData.isNotEmpty) ...[
+                  SizedBox(height: 20),
+                  Text(
+                    "Submitted Data:\n$submittedData",
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                ]
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
